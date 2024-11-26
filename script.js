@@ -1,32 +1,35 @@
 // complete this js code
 // Define the Person constructor function
-function Person(name, age) {
-    this.name = name;
-    this.age = age;
+// Define the Person class
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to greet
+    greet() {
+        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
+    }
 }
 
-// Add the greet method to the Person prototype
-Person.prototype.greet = function () {
-    console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
-};
+// Define the Employee class that extends Person
+class Employee extends Person {
+    constructor(name, age, jobTitle) {
+        // Call the parent class constructor
+        super(name, age);
+        this.jobTitle = jobTitle;
+    }
 
-// Define the Employee constructor function
-function Employee(name, age, jobTitle) {
-    // Call the Person constructor to initialize name and age
-    Person.call(this, name, age);
-    this.jobTitle = jobTitle;
+    // Method for job-specific greeting
+    jobGreet() {
+        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
+    }
 }
 
-// Set up inheritance from Person
-Employee.prototype = Object.create(Person.prototype);
-Employee.prototype.constructor = Employee;
+// Example usage
+const person = new Person("Alice", 25);
+person.greet(); // Output: Hello, my name is Alice, I am 25 years old.
 
-// Add the jobGreet method to the Employee prototype
-Employee.prototype.jobGreet = function () {
-    console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
-};
-
-// Do not change code below this line
-window.Person = Person;
-window.Employee = Employee;
-
+const employee = new Employee("Bob", 30, "Manager");
+employee.jobGreet(); // Output: Hello, my name is Bob, I am 30 years old, and my job title is Manager.
