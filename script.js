@@ -35,10 +35,9 @@ class Person {
     }
 }
 
-// Define the Employee class that extends the Person class
 class Employee extends Person {
     constructor(name, age, jobTitle) {
-        super(name, age); // Call the constructor of the parent class
+        super(name, age);
         this.jobTitle = jobTitle;
     }
 
@@ -47,10 +46,21 @@ class Employee extends Person {
     }
 }
 
-// Create a new Person and call greet
-const alice = new Person("Alice", 25);
-alice.greet();
+	'person.js'
+const { Person, Employee } = require('./person.js'); 
 
-// Create a new Employee and call jobGreet
-const bob = new Employee("Bob", 30, "Manager");
-bob.jobGreet();
+test('Person can greet', () => {
+    const person = new Person('Alice', 25);
+    const consoleSpy = jest.spyOn(console, 'log');
+    person.greet();
+    expect(consoleSpy).toHaveBeenCalledWith('Hello, my name is Alice, I am 25 years old.');
+});
+
+test('Employee can greet and jobGreet', () => {
+    const employee = new Employee('Bob', 30, 'Manager');
+    const consoleSpy = jest.spyOn(console, 'log');
+    employee.greet();
+    expect(consoleSpy).toHaveBeenCalledWith('Hello, my name is Bob, I am 30 years old.');
+    employee.jobGreet();
+    expect(consoleSpy).toHaveBeenCalledWith('Hello, my name is Bob, I am 30 years old, and my job title is Manager.');
+});
