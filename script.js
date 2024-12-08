@@ -47,27 +47,10 @@ class Employee extends Person {
     }
 }
 
-// Export the classes using CommonJS syntax
-module.exports = { Person, Employee };
+// Create a new Person and call greet
+const alice = new Person("Alice", 25);
+alice.greet();
 
-	const { Person, Employee } = require('../../../Person'); // Adjust the path as per your folder structure
-
-describe("Person and Employee Classes", () => {
-    it("should create a Person and call greet", () => {
-        const person = new Persohttps://www.svgrepo.com/show/345221/three-dots.svgn("Alice", 25); // Create an instance of Person
-        cy.spy(console, "log"); // Spy on console.log
-        person.greet(); // Call the greet method
-        expect(console.log).to.have.been.calledWith("Hello, my name is Alice, I am 25 years old."); // Assert output
-    });
-
-    it("should create an Employee and call jobGreet", () => {
-        const employee = new Employee("Bob", 30, "Manager"); // Create an instance of Employee
-        cy.spy(console, "log"); // Spy on console.log
-        employee.jobGreet(); // Call the jobGreet method
-        expect(console.log).to.have.been.calledWith(
-            "Hello, my name is Bob, I am 30 years old, and my job title is Manager." // Assert output
-        );
-    });
-});
-
-
+// Create a new Employee and call jobGreet
+const bob = new Employee("Bob", 30, "Manager");
+bob.jobGreet();
